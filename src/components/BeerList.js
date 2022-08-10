@@ -1,9 +1,10 @@
 import React from 'react'
-// prettier-ignore
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, } from '@chakra-ui/react'
-import { getBeerList } from '../services/getBeerList'
+import { Link as RouteLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
+// prettier-ignore
+import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Link, Text} from '@chakra-ui/react'
+import { getBeerList } from '../services/getBeerList'
 
 export default function BeerList() {
   const [beerList, setBeerList] = useState()
@@ -26,7 +27,12 @@ export default function BeerList() {
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>{beer.description}</AccordionPanel>
+              <AccordionPanel pb={4}>
+                <Text mb="4">{beer.description}</Text>
+                <RouteLink to={`/beer/${beer.id}`}>
+                  View details
+                </RouteLink>
+              </AccordionPanel>
             </AccordionItem>
           ))}
       </Accordion>
