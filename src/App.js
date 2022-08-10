@@ -15,9 +15,9 @@ import Navbar from './components/Navbar'
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Container maxWidth="1024px">
+      <Container maxWidth="1024px" p="0">
         <Navbar />
-        <Box p="2">
+        <Box p={[4, 8]}>
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/about" element={<AboutPage />}></Route>
