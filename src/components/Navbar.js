@@ -5,14 +5,7 @@ import { Link as RouteLink } from 'react-router-dom'
 export default function Navbar() {
   return (
     <>
-      <Flex
-        maxWidth="1024px"
-        minWidth="max-content"
-        alignItems="center"
-        gap="2"
-        bgColor="teal"
-        p="4"
-      >
+      <Flex minWidth="max-content" alignItems="center" gap="2" bgColor="teal" p="4">
         <Box>
           <Heading size="xl" color="white">
             Beer Api
