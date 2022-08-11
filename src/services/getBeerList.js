@@ -1,7 +1,7 @@
-import { BASE_URL } from './config'
+import { BASE_URL, ITEMS_PER_PAGE } from './config'
 
 export async function getBeerList() {
-  let response = await fetch(BASE_URL)
+  let response = await fetch(`${BASE_URL}?per_page=${ITEMS_PER_PAGE}`)
   let result = await response.json()
   return result
 }

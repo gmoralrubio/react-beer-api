@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { Link as RouteLink } from 'react-router-dom'
 import { Image, Text, SimpleGrid, Heading, Flex, Button } from '@chakra-ui/react'
 import { getBeerList } from '../services/getBeerList'
-import { Link as RouteLink } from 'react-router-dom'
+import { ITEMS_PER_PAGE } from '../services/config'
 import Skeleton from './Skeleton'
 
 export default function BeerList() {
@@ -15,7 +16,7 @@ export default function BeerList() {
   return (
     <>
       <SimpleGrid columns={[1, 1, 2]} spacing={10}>
-        {!beerList && [...Array(10).keys()].map((f, i) => <Skeleton key={i} />)}
+        {!beerList && [...Array(ITEMS_PER_PAGE).keys()].map((i) => <Skeleton key={i} />)}
         {beerList &&
           beerList.map((beer) => (
             <Flex
