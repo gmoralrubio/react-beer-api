@@ -1,25 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
-  Link,
-  Image,
-  Text,
-  SimpleGrid,
-  Heading,
-  Flex,
-  VStack,
-  HStack,
-  Button,
-} from '@chakra-ui/react'
+import { Image, Text, SimpleGrid, Heading, Flex, Button } from '@chakra-ui/react'
 import { getBeerList } from '../services/getBeerList'
 import { Link as RouteLink } from 'react-router-dom'
+import Skeleton from './Skeleton'
 
 export default function BeerList() {
   const [beerList, setBeerList] = useState()
@@ -27,19 +12,20 @@ export default function BeerList() {
   useEffect(() => {
     getBeerList().then(setBeerList)
   }, [])
-
   return (
     <>
       <SimpleGrid columns={[1, 1, 2]} spacing={10}>
+        {!beerList && [...Array(10).keys()].map((f, i) => <Skeleton key={i} />)}
         {beerList &&
           beerList.map((beer) => (
             <Flex
-              bg="#ececec"
               rounded="5px"
               height="stretch"
               direction="column"
               p={[2, 4]}
               key={beer.id}
+              boxShadow="lg"
+              bg="white"
             >
               <Heading size="lg" pb="8">
                 {beer.name}
@@ -58,28 +44,6 @@ export default function BeerList() {
             </Flex>
           ))}
       </SimpleGrid>
-
-      {/* <Accordion allowMultiple>
-        {beerList &&
-          beerList.map((beer) => (
-            <AccordionItem key={beer.id}>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    {beer.name}
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <Text mb="4">{beer.description}</Text>
-                <RouteLink to={`/beer/${beer.id}`}>
-                  View details
-                </RouteLink>
-              </AccordionPanel>
-            </AccordionItem>
-          ))}
-      </Accordion> */}
     </>
   )
 }
