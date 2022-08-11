@@ -2,21 +2,35 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link as RouteLink } from 'react-router-dom'
-import { Image, Text, SimpleGrid, Heading, Flex, Button } from '@chakra-ui/react'
+import { Image, Text, SimpleGrid, Heading, Flex, Button, Link } from '@chakra-ui/react'
 import { getBeerList } from '../services/getBeerList'
 import { ITEMS_PER_PAGE } from '../services/config'
 import Skeleton from './Skeleton'
 
 export default function BeerList() {
   const [beerList, setBeerList] = useState()
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    getBeerList().then(setBeerList)
-  }, [])
+    getBeerList(page).then(setBeerList)
+  }, [page])
+
+  const handleNextPage = () => {
+    setPage((prev) => (beerList.length !== 0 ? prev + 1 : prev))
+  }
+  const handlePrevPage = () => {
+    setPage((prev) => (prev === 1 ? 1 : prev - 1))
+  }
+
   return (
     <>
+      <Flex>
+        <Link onClick={handlePrevPage}>Prev Page</Link>
+        <Link onClick={handleNextPage}>Next Page</Link>
+      </Flex>
       <SimpleGrid columns={[1, 1, 2]} spacing={10}>
         {!beerList && [...Array(ITEMS_PER_PAGE).keys()].map((i) => <Skeleton key={i} />)}
+        {beerList && beerList.length === 0 && <p>No hay mas items</p>}
         {beerList &&
           beerList.map((beer) => (
             <Flex
