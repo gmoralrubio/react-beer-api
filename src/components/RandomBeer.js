@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { getRandomBeer } from '../services/getRandomBeer'
-import SingleBeer from './SingleBeer'
+import BeerCard from './BeerCard'
 import Skeleton from './Skeleton'
 
 export function RandomBeer() {
@@ -14,7 +14,7 @@ export function RandomBeer() {
   return (
     <>
       {!randomBeer && <Skeleton />}
-      {randomBeer && <SingleBeer beerData={randomBeer} />}
+      {randomBeer && <BeerCard beerData={randomBeer} isFullSize={true} />}
     </>
   )
 }

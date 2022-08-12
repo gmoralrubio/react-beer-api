@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Flex,
-  Heading,
-  Spacer,
-} from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Flex, Heading, Spacer } from '@chakra-ui/react'
 import React from 'react'
 import { Link as RouteLink } from 'react-router-dom'
 
@@ -17,7 +10,7 @@ export default function Navbar() {
         direction={['column', 'row']}
         alignItems="center"
         gap="2"
-        bgColor="teal"
+        bgColor="blue.500"
         px={[4, 10]}
         py={['4']}
       >

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 
+
 export default function Skeleton() {
   return (
     <Box padding="6" boxShadow="lg" bg="white">

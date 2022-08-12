@@ -1,18 +1,18 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { getBeer } from '../services/getBeer'
-import SingleBeer from './SingleBeer'
+import BeerCard from './BeerCard'
 import Skeleton from './Skeleton'
 
 export default function BeerDetail({ id }) {
   const [beerDetail, setBeerDetail] = useState()
   useEffect(() => {
     getBeer(id).then(setBeerDetail)
-  }, [])
+  }, [id])
   return (
     <>
       {!beerDetail && <Skeleton />}
-      {beerDetail && <SingleBeer beerData={beerDetail} />}
+      {beerDetail && <BeerCard beerData={beerDetail} isFullSize={true} />}
     </>
   )
 }
